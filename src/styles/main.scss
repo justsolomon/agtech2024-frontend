@@ -1,0 +1,18 @@
+@import 'variables';
+@import 'reset';
+
+body {
+  font-family: $font-family;
+  color: $primary-color;
+  font-size: $font-size--base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: $font-family;
+}
+
+img {
+  object-fit: cover;
+}
