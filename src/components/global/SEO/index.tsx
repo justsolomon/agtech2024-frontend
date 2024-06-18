@@ -5,7 +5,10 @@ interface SEOProps {
   description?: string;
 }
 
-const SEO = ({ prefix, description = 'FeedFlow web app' }: SEOProps) => {
+const SEO = ({
+  prefix,
+  description = 'Feed smarter, Farm better. ',
+}: SEOProps) => {
   const seo = {
     description,
     title: `${prefix} | FeedFlow`,
