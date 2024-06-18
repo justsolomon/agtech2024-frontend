@@ -1,18 +1,9 @@
-@import 'variables';
-@import 'reset';
-
-body {
-  font-family: $font-family;
-  color: $primary-color;
-  font-size: $font-size--base;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.leaflet-div-icon {
+  background: none !important;
+  border: none !important;
 }
 
-button {
-  font-family: $font-family;
-}
-
-img {
-  object-fit: cover;
+.animal-marker {
+  border: 2px solid #000 !important;
+  padding: 0px 4px !important;
 }

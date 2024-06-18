@@ -12,14 +12,14 @@ export const getBaseQuery = (
 ): BaseQueryFn<string | FetchArgs> => {
   return fetchBaseQuery({
     baseUrl: `${API_BASE_URL}${pathname ? `/${pathname}` : ''}`,
-    prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState).auth.token;
+    // prepareHeaders: (headers, { getState }) => {
+    //   const token = (getState() as RootState).auth.token;
 
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
+    //   if (token) {
+    //     headers.set('Authorization', `Bearer ${token}`);
+    //   }
 
-      return headers;
-    },
+    //   return headers;
+    // },
   });
 };

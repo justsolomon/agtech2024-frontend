@@ -1,4 +1,4 @@
-# React App Template
+# AgTech 2024
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ To run the app locally, follow the steps below:
 2. After cloning, navigate into the repo using the command:
 
    ```
-   cd template
+   cd agtech2024-frontend
    ```
 
 3. Install the dependencies in the package.json using the command:
