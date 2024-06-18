@@ -79,7 +79,10 @@ const SearchPensModal = ({ penMarkers, goToPen }: SearchPensModalProps) => {
                     color: 'white !important',
                   }}
                   transition="all 0.1s"
-                  onClick={() => goToPen(pen)}
+                  onClick={() => {
+                    goToPen(pen);
+                    closeModal();
+                  }}
                 >
                   <VStack align="flex-start" spacing={0} fontWeight="600">
                     <Text>{`Pen ${pen.number}`}</Text>

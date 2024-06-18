@@ -21,14 +21,14 @@ const AddPenModal = ({ addPen, ...restProps }: AddPenModalProps) => {
   const [number, setNumber] = useState('');
   const [animalType, setAnimalType] = useState('Cattle');
   const [animalCount, setAnimalCount] = useState('');
-  const [feedType, setFeedType] = useState('');
+  const [feedType, setFeedType] = useState('Grass');
   const [feedTonnage, setFeedTonnage] = useState('');
 
   const clearForm = () => {
     setNumber('');
-    setAnimalType('');
+    setAnimalType('Cattle');
     setAnimalCount('');
-    setFeedType('');
+    setFeedType('Grass');
     setFeedTonnage('');
   };
 
@@ -71,6 +71,7 @@ const AddPenModal = ({ addPen, ...restProps }: AddPenModalProps) => {
               isRequired
             />
             <FormElement
+              type="number"
               label="Animal count"
               value={animalCount}
               setValue={setAnimalCount}

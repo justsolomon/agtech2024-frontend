@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { InitialDriverState, LocalFarmRun, PenDump } from 'types';
+
+const initialState: InitialDriverState = {
+  isSearchPensModalOpen: false,
+  isFilterPensModalOpen: false,
+  inIssuePinMode: false,
+  isFilterActive: false,
+  activeRun: null,
+};
 
 export const driverSlice = createSlice({
   name: 'driver',
-  initialState: {
-    isSearchPensModalOpen: false,
-    isFilterPensModalOpen: false,
-    inIssuePinMode: false,
-    isFilterActive: false,
-  },
+  initialState,
   reducers: {
     toggleActionModalOpen: (
       state,
@@ -28,10 +32,31 @@ export const driverSlice = createSlice({
     setFilterActive: (state, action: PayloadAction<boolean>) => {
       state.isFilterActive = action.payload;
     },
+    setActiveRun: (state, action: PayloadAction<LocalFarmRun | null>) => {
+      if (action.payload === null) {
+        state.activeRun = null;
+        return;
+      }
+
+      state.activeRun = {
+        data: action.payload,
+        penDumps: [],
+      };
+    },
+    addNewPenDump: (state, action: PayloadAction<PenDump>) => {
+      if (state.activeRun) {
+        state.activeRun.penDumps.push(action.payload);
+      }
+    },
   },
 });
 
-export const { toggleActionModalOpen, toggleIssuePinMode, setFilterActive } =
-  driverSlice.actions;
+export const {
+  toggleActionModalOpen,
+  toggleIssuePinMode,
+  setFilterActive,
+  setActiveRun,
+  addNewPenDump,
+} = driverSlice.actions;
 
 export default driverSlice.reducer;

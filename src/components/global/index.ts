@@ -5,3 +5,4 @@ export { default as DriverLayout } from './layouts/DriverLayout';
 export { default as SEO } from './SEO';
 export { default as AppLogo } from './AppLogo';
 export { default as ActionsMenuBar } from './ActionsMenuBar';
+export { default as AppHeader } from './AppHeader';

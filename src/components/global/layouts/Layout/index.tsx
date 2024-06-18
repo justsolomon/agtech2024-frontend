@@ -1,5 +1,5 @@
 import { Box, Stack } from '@chakra-ui/react';
-import AppLogo from 'components/global/AppLogo';
+import AppHeader from 'components/global/AppHeader';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,9 +8,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Stack as="header" h="60px" align="center" justify="center" px={4}>
-        <AppLogo />
-      </Stack>
+      <AppHeader />
 
       <Box as="main">{children}</Box>
     </>

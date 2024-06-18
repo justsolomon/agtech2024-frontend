@@ -1,4 +1,4 @@
-import { HStack, Stack, Text, VStack } from '@chakra-ui/react';
+import { HStack, Text, VStack } from '@chakra-ui/react';
 import { Popup } from 'react-leaflet';
 import { FarmIssue, PenMarkerInfo } from 'types';
 
@@ -32,8 +32,13 @@ const MarkerPopup = ({ data }: MarkerPopupProps) => {
         {fieldsToDisplay.map(({ label, key }) => (
           <HStack key={key} fontSize="14px">
             <Text fontWeight="bold">{label}:</Text>
-            {/* @ts-ignore */}
-            <Text>{data[key]}</Text>
+            <Text>
+              {key === 'createdAt'
+                ? //@ts-ignore
+                  new Date(data[key]).toLocaleDateString()
+                : //@ts-ignore
+                  data[key]}
+            </Text>
           </HStack>
         ))}
       </VStack>

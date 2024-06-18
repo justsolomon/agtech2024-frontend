@@ -16,6 +16,9 @@ import { PenMarkerInfo, UserType } from 'types';
 import FilterPensModal from '../FilterPensModal';
 import ReportIssueModal from '../ReportIssueModal';
 import MarkerPopup from '../MarkerPopup';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import EndRunButton from '../EndRunButton';
+import AddDumpModal from '../AddDumpModal';
 
 interface PenMapProps {
   userType: UserType;
@@ -24,20 +27,24 @@ interface PenMapProps {
 const PenMap = ({ userType }: PenMapProps) => {
   const {
     coord: currPosition,
-    markers,
+    penMarkers,
     displayedMarkers,
     issueMarkers,
     inIssuePinMode,
-    addMarker,
+    closePen,
+    addPenMarker,
+    addPenDump,
     addIssueMarker,
     filterDisplayedMarkers,
     setClickedMarkerCoord,
+    closeAddDumpModal,
   } = useMap();
   const addPenDisclosure = useDisclosure();
   const addIssueDisclosure = useDisclosure();
+  const { activeRun } = useAppSelector((state) => state.driver);
 
   const goToPen = (pen: PenMarkerInfo) => {
-    console.log('Go to pen', pen);
+    // console.log('Go to pen', pen);
   };
 
   const onMapClick = (coord: LatLngExpression) => {
@@ -96,8 +103,17 @@ const PenMap = ({ userType }: PenMapProps) => {
         ))}
       </MapContainer>
 
-      <AddPenModal {...addPenDisclosure} addPen={addMarker} />
-      <SearchPensModal penMarkers={markers} goToPen={goToPen} />
+      {activeRun !== null ? <EndRunButton activeRun={activeRun} /> : null}
+      {closePen !== null ? (
+        <AddDumpModal
+          pen={closePen}
+          addDump={addPenDump}
+          isOpen={closePen !== null}
+          onClose={closeAddDumpModal}
+        />
+      ) : null}
+      <AddPenModal {...addPenDisclosure} addPen={addPenMarker} />
+      <SearchPensModal penMarkers={penMarkers} goToPen={goToPen} />
       <FilterPensModal applyFilters={filterDisplayedMarkers} />
       <ReportIssueModal {...addIssueDisclosure} addIssue={addIssueMarker} />
     </>

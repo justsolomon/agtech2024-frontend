@@ -16,3 +16,34 @@ export interface FarmIssue {
   createdAt: string;
   coord: LatLngExpression;
 }
+
+export interface LocalFarmRun {
+  feedType: string;
+  weightUsed?: number;
+}
+
+export interface FarmRun {
+  feedType: string;
+  weightUsed: number;
+}
+
+export interface PenDump extends PenMarkerInfo {
+  lat: number;
+  lng: number;
+  startTime: string;
+  endTime: string;
+  feedTonnageDispensed: number;
+}
+
+export interface ActiveRun {
+  data: LocalFarmRun;
+  penDumps: PenDump[];
+}
+
+export interface InitialDriverState {
+  isSearchPensModalOpen: boolean;
+  isFilterPensModalOpen: boolean;
+  inIssuePinMode: boolean;
+  isFilterActive: boolean;
+  activeRun: ActiveRun | null;
+}

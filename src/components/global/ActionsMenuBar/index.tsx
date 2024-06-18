@@ -1,4 +1,4 @@
-import { IconButton, Tooltip, VStack } from '@chakra-ui/react';
+import { IconButton, VStack } from '@chakra-ui/react';
 import {
   //   Path,
   //   HandTap,
@@ -53,17 +53,15 @@ const ActionsMenuBar = () => {
         return (
           <IconButton
             aria-label={title}
-            icon={
-              <Icon
-                weight="bold"
-                size="16px"
-                color={isActive ? 'white' : 'green'}
-              />
-            }
+            icon={<Icon weight="bold" size="16px" />}
             onClick={onClick}
             bg={isActive ? 'green' : 'white'}
+            color={isActive ? 'white' : 'green'}
             size="sm"
-            _hover={{ bg: 'white' }}
+            _hover={{
+              bg: isActive ? 'green' : 'white',
+              color: isActive ? 'white' : 'green',
+            }}
           />
         );
       })}

@@ -1,7 +1,13 @@
-import { DriverLayout } from 'components/global';
+import ScheduleTabs from 'components/driver/ScheduleTabs';
+import { AppHeader, DriverLayout } from 'components/global';
 
 const DriverScheduleContainer = () => {
-  return <DriverLayout>Schedule</DriverLayout>;
+  return (
+    <DriverLayout>
+      <AppHeader />
+      <ScheduleTabs />
+    </DriverLayout>
+  );
 };
 
 export default DriverScheduleContainer;

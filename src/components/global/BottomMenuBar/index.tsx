@@ -17,7 +17,7 @@ const BottomMenuBar = () => {
       w="100%"
       bg="white"
       justify="space-around"
-      position="absolute"
+      position="fixed"
       zIndex={1000}
       bottom={0}
       spacing={0}
