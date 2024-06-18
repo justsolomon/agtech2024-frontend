@@ -1,4 +1,6 @@
-# AgTech 2024
+# FeedFlow
+
+This repository contains the frontend code for Team FeedFlow's submission to the 24 Hour Startup | AGTECH 2024 competition.
 
 ## Getting Started
 
