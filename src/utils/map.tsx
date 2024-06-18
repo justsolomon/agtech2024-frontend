@@ -55,3 +55,11 @@ export const GoatMarkerIcon = new L.Icon({
   iconSize: new L.Point(35, 30),
   className: 'leaflet-div-icon animal-marker',
 });
+
+export const MARKER_ICONS = {
+  Cattle: CattleMarkerIcon,
+  Sheep: SheepMarkerIcon,
+  Pig: PigMarkerIcon,
+  Chicken: ChickenMarkerIcon,
+  Goat: GoatMarkerIcon,
+};

@@ -1,15 +1,18 @@
 import { IconButton, Tooltip, VStack } from '@chakra-ui/react';
 import {
+  //   Path,
+  //   HandTap,
   Funnel,
-  HandTap,
   MagnifyingGlass,
   MapPinSimple,
-  Path,
 } from '@phosphor-icons/react';
-import { useAppDispatch } from 'redux/hooks';
-import { toggleActionModalOpen } from 'redux/slices';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { toggleActionModalOpen, toggleIssuePinMode } from 'redux/slices';
 
 const ActionsMenuBar = () => {
+  const { inIssuePinMode, isFilterActive } = useAppSelector(
+    (state) => state.driver,
+  );
   const dispatch = useAppDispatch();
 
   const openSearchModal = () => {
@@ -20,11 +23,12 @@ const ActionsMenuBar = () => {
     dispatch(toggleActionModalOpen('filter'));
   };
 
-  const planRoute = () => {};
+  //   const planRoute = () => {};
+  //   const selectPens = () => {};
 
-  const selectPens = () => {};
-
-  const pin = () => {};
+  const pin = () => {
+    dispatch(toggleIssuePinMode());
+  };
 
   const actions = [
     {
@@ -32,8 +36,8 @@ const ActionsMenuBar = () => {
       icon: MagnifyingGlass,
       onClick: openSearchModal,
     },
-    { title: 'Plan a route', icon: Path, onClick: planRoute },
-    { title: 'Select multiple pens', icon: HandTap, onClick: selectPens },
+    // { title: 'Plan a route', icon: Path, onClick: planRoute },
+    // { title: 'Select multiple pens', icon: HandTap, onClick: selectPens },
     { title: 'Filter', icon: Funnel, onClick: openFilterModal },
     { title: 'Pin', icon: MapPinSimple, onClick: pin },
   ];
@@ -42,18 +46,25 @@ const ActionsMenuBar = () => {
     <VStack position="absolute" zIndex={1000} top={24} left={3}>
       {actions.map(({ title, icon, onClick }) => {
         const Icon = icon;
+        const isActive =
+          (title === 'Pin' && inIssuePinMode) ||
+          (title === 'Filter' && isFilterActive);
 
         return (
-          <Tooltip label={title} key={title} hasArrow placement="top">
-            <IconButton
-              aria-label={title}
-              icon={<Icon weight="bold" size="16px" color="green" />}
-              onClick={onClick}
-              bg="white"
-              size="sm"
-              _hover={{ bg: 'white' }}
-            />
-          </Tooltip>
+          <IconButton
+            aria-label={title}
+            icon={
+              <Icon
+                weight="bold"
+                size="16px"
+                color={isActive ? 'white' : 'green'}
+              />
+            }
+            onClick={onClick}
+            bg={isActive ? 'green' : 'white'}
+            size="sm"
+            _hover={{ bg: 'white' }}
+          />
         );
       })}
     </VStack>

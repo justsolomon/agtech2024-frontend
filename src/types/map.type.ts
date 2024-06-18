@@ -8,3 +8,11 @@ export interface PenMarkerInfo {
   feedType: string;
   feedTonnage: number;
 }
+
+export interface FarmIssue {
+  type: 'Issue' | 'Observation';
+  description: string;
+  loggedBy: string;
+  createdAt: string;
+  coord: LatLngExpression;
+}

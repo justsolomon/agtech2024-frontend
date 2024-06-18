@@ -28,7 +28,7 @@ const FilterPensModal = ({ applyFilters }: FilterPensModalProps) => {
   };
 
   return (
-    <Modal isOpen={isFilterPensModalOpen} onClose={closeModal}>
+    <Modal size="sm" isOpen={isFilterPensModalOpen} onClose={closeModal}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Filter pens</ModalHeader>

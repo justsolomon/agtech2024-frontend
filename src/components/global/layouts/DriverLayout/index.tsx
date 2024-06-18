@@ -1,6 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import ActionsMenuBar from '../ActionsMenuBar';
-import BottomMenuBar from '../BottomMenuBar';
+import BottomMenuBar from '../../BottomMenuBar';
 
 interface DriverLayoutProps {
   children: React.ReactNode;
@@ -9,9 +8,9 @@ interface DriverLayoutProps {
 const DriverLayout = ({ children }: DriverLayoutProps) => {
   return (
     <Box>
-      <ActionsMenuBar />
-
-      <Box as="main">{children}</Box>
+      <Box as="main" h="100vh" w="100vw">
+        {children}
+      </Box>
 
       <BottomMenuBar />
     </Box>

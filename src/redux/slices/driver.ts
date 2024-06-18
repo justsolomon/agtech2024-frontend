@@ -2,7 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const driverSlice = createSlice({
   name: 'driver',
-  initialState: { isSearchPensModalOpen: false, isFilterPensModalOpen: false },
+  initialState: {
+    isSearchPensModalOpen: false,
+    isFilterPensModalOpen: false,
+    inIssuePinMode: false,
+    isFilterActive: false,
+  },
   reducers: {
     toggleActionModalOpen: (
       state,
@@ -17,9 +22,16 @@ export const driverSlice = createSlice({
           break;
       }
     },
+    toggleIssuePinMode: (state) => {
+      state.inIssuePinMode = !state.inIssuePinMode;
+    },
+    setFilterActive: (state, action: PayloadAction<boolean>) => {
+      state.isFilterActive = action.payload;
+    },
   },
 });
 
-export const { toggleActionModalOpen } = driverSlice.actions;
+export const { toggleActionModalOpen, toggleIssuePinMode, setFilterActive } =
+  driverSlice.actions;
 
 export default driverSlice.reducer;

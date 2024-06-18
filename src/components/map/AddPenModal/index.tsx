@@ -33,7 +33,7 @@ const AddPenModal = ({ addPen, ...restProps }: AddPenModalProps) => {
   };
 
   return (
-    <Modal {...restProps}>
+    <Modal size="sm" {...restProps}>
       <ModalOverlay />
       <ModalContent
         as="form"

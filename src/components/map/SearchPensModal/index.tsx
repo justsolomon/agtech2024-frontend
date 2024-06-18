@@ -39,7 +39,7 @@ const SearchPensModal = ({ penMarkers, goToPen }: SearchPensModalProps) => {
   };
 
   return (
-    <Modal isOpen={isSearchPensModalOpen} onClose={closeModal}>
+    <Modal size="sm" isOpen={isSearchPensModalOpen} onClose={closeModal}>
       <ModalOverlay />
       <ModalContent>
         <ModalBody as={VStack} px={1}>
