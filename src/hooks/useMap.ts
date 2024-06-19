@@ -6,6 +6,7 @@ import { FarmIssue, PenDump, PenMarkerInfo } from 'types';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { addNewPenDump, setFilterActive } from 'redux/slices';
 import useAuth from './useAuth';
+import useTruckSpeed from './useTruckSpeed';
 
 const useMap = () => {
   const [coord, setCoord] = useState<LatLngExpression>([
@@ -27,14 +28,31 @@ const useMap = () => {
   const { inIssuePinMode, activeRun } = useAppSelector((state) => state.driver);
   const dispatch = useAppDispatch();
   const [closePen, setClosePen] = useState<PenMarkerInfo | null>(null);
-  const [simulationInterval, setSimulationInterval] =
-    useState<NodeJS.Timeout | null>(null);
+  const { speed, setCoords: setTruckSpeedCoords, calcSpeed } = useTruckSpeed();
 
   useEffect(() => {
     if (location.latitude && location.longitude) {
       if (!activeRun) {
         setCoord([location.latitude, location.longitude]);
       }
+
+      setTruckSpeedCoords((prev) => {
+        const currCoord = [
+          location.latitude,
+          location.longitude,
+        ] as LatLngExpression;
+        if (prev) {
+          calcSpeed(currCoord, prev['current']);
+        }
+
+        return {
+          current: currCoord,
+          old:
+            prev && prev.current
+              ? prev.current
+              : ([location.latitude, location.longitude] as LatLngExpression),
+        };
+      });
     }
   }, [location, activeRun, closePen]);
 
@@ -170,6 +188,7 @@ const useMap = () => {
     displayedMarkers,
     inIssuePinMode,
     closePen,
+    truckSpeed: speed,
     addPenMarker,
     addPenDump,
     addIssueMarker,
